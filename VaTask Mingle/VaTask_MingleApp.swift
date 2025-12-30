@@ -11,7 +11,7 @@ import SwiftUI
 struct VaTask_MingleApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LaunchCheckView()
         }
     }
 }

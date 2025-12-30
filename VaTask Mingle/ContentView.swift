@@ -8,14 +8,61 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedTab = 0
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            Color.appBackground.ignoresSafeArea()
+            
+            TabView(selection: $selectedTab) {
+                TaskListView()
+                    .tabItem {
+                        Label("Задачи", systemImage: "list.bullet")
+                    }
+                    .tag(0)
+                
+                ProjectDashboardView()
+                    .tabItem {
+                        Label("Дашборд", systemImage: "chart.bar.fill")
+                    }
+                    .tag(1)
+                
+                SettingsView()
+                    .tabItem {
+                        Label("Настройки", systemImage: "gear")
+                    }
+                    .tag(2)
+            }
+            .accentColor(.appAccent)
+            .onAppear {
+                // Customize tab bar appearance
+                let appearance = UITabBarAppearance()
+                appearance.configureWithOpaqueBackground()
+                appearance.backgroundColor = UIColor(Color.appBackground)
+                
+                // Unselected item color
+                appearance.stackedLayoutAppearance.normal.iconColor = UIColor(Color.white.opacity(0.5))
+                appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor(Color.white.opacity(0.5))]
+                
+                // Selected item color
+                appearance.stackedLayoutAppearance.selected.iconColor = UIColor(Color.appAccent)
+                appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor(Color.appAccent)]
+                
+                UITabBar.appearance().standardAppearance = appearance
+                UITabBar.appearance().scrollEdgeAppearance = appearance
+                
+                // Customize navigation bar
+                let navAppearance = UINavigationBarAppearance()
+                navAppearance.configureWithOpaqueBackground()
+                navAppearance.backgroundColor = UIColor(Color.appBackground)
+                navAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+                navAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+                
+                UINavigationBar.appearance().standardAppearance = navAppearance
+                UINavigationBar.appearance().scrollEdgeAppearance = navAppearance
+                UINavigationBar.appearance().compactAppearance = navAppearance
+            }
         }
-        .padding()
     }
 }
 
