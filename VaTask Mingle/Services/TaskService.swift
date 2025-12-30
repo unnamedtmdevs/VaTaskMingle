@@ -1,5 +1,6 @@
 import Foundation
-import UserNotifications
+// UserNotifications import removed - permissions disabled
+// import UserNotifications
 
 class TaskService: ObservableObject {
     static let shared = TaskService()
@@ -10,7 +11,8 @@ class TaskService: ObservableObject {
     
     init() {
         loadTasks()
-        requestNotificationPermission()
+        // Notification permissions disabled
+        // requestNotificationPermission()
     }
     
     // MARK: - Task Management
@@ -18,21 +20,24 @@ class TaskService: ObservableObject {
     func addTask(_ task: Task) {
         tasks.append(task)
         saveTasks()
-        scheduleNotification(for: task)
+        // Notifications disabled
+        // scheduleNotification(for: task)
     }
     
     func updateTask(_ task: Task) {
         if let index = tasks.firstIndex(where: { $0.id == task.id }) {
             tasks[index] = task
             saveTasks()
-            updateNotification(for: task)
+            // Notifications disabled
+            // updateNotification(for: task)
         }
     }
     
     func deleteTask(_ task: Task) {
         tasks.removeAll { $0.id == task.id }
         saveTasks()
-        cancelNotification(for: task)
+        // Notifications disabled
+        // cancelNotification(for: task)
     }
     
     func toggleTaskStatus(_ task: Task) {
@@ -96,11 +101,13 @@ class TaskService: ObservableObject {
     func resetAllData() {
         tasks = []
         UserDefaults.standard.removeObject(forKey: tasksKey)
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        // Notifications disabled
+        // UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
-    // MARK: - Notifications
+    // MARK: - Notifications (DISABLED - No permissions requested)
     
+    /*
     private func requestNotificationPermission() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if let error = error {
@@ -113,7 +120,7 @@ class TaskService: ObservableObject {
         guard let reminderDate = task.reminderDate else { return }
         
         let content = UNMutableNotificationContent()
-        content.title = "Напоминание о задаче"
+        content.title = "Task Reminder"
         content.body = task.title
         content.sound = .default
         
@@ -137,5 +144,6 @@ class TaskService: ObservableObject {
     private func cancelNotification(for task: Task) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [task.id.uuidString])
     }
+    */
 }
 

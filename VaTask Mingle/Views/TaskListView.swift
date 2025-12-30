@@ -77,7 +77,7 @@ struct TaskListView: View {
                 Button(action: { viewModel.selectedProject = nil }) {
                     HStack {
                         Image(systemName: "tray.full.fill")
-                        Text("Все задачи")
+                        Text("All Tasks")
                             .font(.system(size: 14, weight: .medium))
                     }
                     .foregroundColor(viewModel.selectedProject == nil ? .white : .white.opacity(0.7))
@@ -114,13 +114,13 @@ struct TaskListView: View {
     private var searchAndFilter: some View {
         VStack(spacing: 12) {
             // Search
-            NeumorphicTextField(placeholder: "Поиск задач...", text: $viewModel.searchText)
+            NeumorphicTextField(placeholder: "Search tasks...", text: $viewModel.searchText)
             
             // Filter and sort
             HStack {
                 // Status filter
                 Menu {
-                    Button("Все") { viewModel.filterStatus = nil }
+                    Button("All") { viewModel.filterStatus = nil }
                     ForEach(Task.TaskStatus.allCases, id: \.self) { status in
                         Button(status.rawValue) {
                             viewModel.filterStatus = status
@@ -129,7 +129,7 @@ struct TaskListView: View {
                 } label: {
                     HStack {
                         Image(systemName: "line.3.horizontal.decrease.circle")
-                        Text(viewModel.filterStatus?.rawValue ?? "Фильтр")
+                        Text(viewModel.filterStatus?.rawValue ?? "Filter")
                             .font(.system(size: 14))
                     }
                     .foregroundColor(.white)
@@ -187,11 +187,11 @@ struct TaskListView: View {
                 .foregroundColor(.white.opacity(0.3))
                 .padding(.top, 100)
             
-            Text("Нет задач")
+            Text("No Tasks")
                 .font(.system(size: 24, weight: .semibold))
                 .foregroundColor(.white.opacity(0.7))
             
-            Text("Нажмите + чтобы создать первую задачу")
+            Text("Tap + to create your first task")
                 .font(.system(size: 16))
                 .foregroundColor(.white.opacity(0.5))
         }

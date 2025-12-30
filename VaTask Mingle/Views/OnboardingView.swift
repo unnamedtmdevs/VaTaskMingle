@@ -8,23 +8,23 @@ struct OnboardingView: View {
     let pages = [
         OnboardingPage(
             icon: "checkmark.circle.fill",
-            title: "Добро пожаловать в TaskMingle",
-            description: "Управляйте задачами и проектами с легкостью. Современный подход к продуктивности."
+            title: "Welcome to TaskMingle",
+            description: "Manage tasks and projects with ease. A modern approach to productivity."
         ),
         OnboardingPage(
             icon: "person.3.fill",
-            title: "Командная работа",
-            description: "Приглашайте участников, делитесь проектами и достигайте целей вместе."
+            title: "Team Collaboration",
+            description: "Invite members, share projects, and achieve goals together."
         ),
         OnboardingPage(
             icon: "chart.bar.fill",
-            title: "Отслеживание прогресса",
-            description: "Визуализируйте прогресс проектов и никогда не упускайте дедлайны."
+            title: "Track Progress",
+            description: "Visualize project progress and never miss deadlines."
         ),
         OnboardingPage(
             icon: "bell.fill",
-            title: "Напоминания",
-            description: "Настраивайте напоминания и получайте уведомления о важных задачах."
+            title: "Reminders",
+            description: "Set up reminders and get notifications for important tasks."
         )
     ]
     
@@ -76,7 +76,7 @@ struct OnboardingView: View {
                 // Email input on last page
                 if currentPage == pages.count - 1 {
                     VStack(spacing: 15) {
-                        Text("Введите ваш email (опционально)")
+                        Text("Enter your email (optional)")
                             .font(.system(size: 14))
                             .foregroundColor(.white.opacity(0.7))
                         
@@ -105,7 +105,7 @@ struct OnboardingView: View {
                     if currentPage < pages.count - 1 {
                         Button(action: nextPage) {
                             HStack {
-                                Text("Далее")
+                                Text("Next")
                                     .font(.system(size: 18, weight: .semibold))
                                 Image(systemName: "chevron.right")
                             }
@@ -115,7 +115,7 @@ struct OnboardingView: View {
                         .buttonStyle(NeumorphicButtonStyle())
                     } else {
                         Button(action: completeOnboarding) {
-                            Text("Начать")
+                            Text("Get Started")
                                 .font(.system(size: 18, weight: .semibold))
                                 .foregroundColor(.white)
                                 .frame(maxWidth: 200)
@@ -160,16 +160,16 @@ struct OnboardingView: View {
     
     private func createSampleData() {
         let sampleProject = Project(
-            name: "Мой первый проект",
-            description: "Это пример проекта. Вы можете редактировать или удалить его.",
+            name: "My First Project",
+            description: "This is a sample project. Feel free to edit or delete it.",
             color: "#FE284A",
             icon: "star.fill"
         )
         UserService.shared.addProject(sampleProject)
         
         let sampleTask = Task(
-            title: "Добро пожаловать в TaskMingle!",
-            description: "Начните с создания своих задач и проектов. Используйте приоритеты, устанавливайте сроки и отслеживайте прогресс.",
+            title: "Welcome to TaskMingle!",
+            description: "Start by creating your tasks and projects. Use priorities, set deadlines, and track your progress.",
             projectId: sampleProject.id,
             priority: .medium,
             status: .todo,

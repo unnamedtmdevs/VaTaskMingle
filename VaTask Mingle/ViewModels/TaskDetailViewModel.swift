@@ -32,7 +32,7 @@ class TaskDetailViewModel: ObservableObject {
         
         let comment = Comment(
             text: newComment,
-            author: userService.currentUserEmail.isEmpty ? "Вы" : userService.currentUserEmail,
+            author: userService.currentUserEmail.isEmpty ? "You" : userService.currentUserEmail,
             createdDate: Date(),
             mentions: extractMentions(from: newComment)
         )

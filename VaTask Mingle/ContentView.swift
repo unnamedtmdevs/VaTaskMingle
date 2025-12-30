@@ -17,19 +17,19 @@ struct ContentView: View {
             TabView(selection: $selectedTab) {
                 TaskListView()
                     .tabItem {
-                        Label("Задачи", systemImage: "list.bullet")
+                        Label("Tasks", systemImage: "list.bullet")
                     }
                     .tag(0)
                 
                 ProjectDashboardView()
                     .tabItem {
-                        Label("Дашборд", systemImage: "chart.bar.fill")
+                        Label("Dashboard", systemImage: "chart.bar.fill")
                     }
                     .tag(1)
                 
                 SettingsView()
                     .tabItem {
-                        Label("Настройки", systemImage: "gear")
+                        Label("Settings", systemImage: "gear")
                     }
                     .tag(2)
             }

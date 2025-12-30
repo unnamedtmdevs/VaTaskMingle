@@ -33,10 +33,10 @@ struct TeamMember: Identifiable, Codable {
     var joinedDate: Date
     
     enum MemberRole: String, Codable, CaseIterable {
-        case owner = "Владелец"
-        case admin = "Администратор"
-        case member = "Участник"
-        case viewer = "Наблюдатель"
+        case owner = "Owner"
+        case admin = "Admin"
+        case member = "Member"
+        case viewer = "Viewer"
     }
 }
 

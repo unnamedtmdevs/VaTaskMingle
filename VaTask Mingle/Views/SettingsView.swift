@@ -33,24 +33,24 @@ struct SettingsView: View {
                     .padding()
                 }
             }
-            .navigationTitle("Настройки")
+            .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.large)
         }
         .accentColor(.appAccent)
-        .alert("Удалить аккаунт?", isPresented: $showingDeleteConfirmation) {
-            Button("Отмена", role: .cancel) { }
-            Button("Удалить", role: .destructive) {
+        .alert("Delete Account?", isPresented: $showingDeleteConfirmation) {
+            Button("Cancel", role: .cancel) { }
+            Button("Delete", role: .destructive) {
                 deleteAccount()
             }
         } message: {
-            Text("Все ваши данные будут удалены безвозвратно. Приложение будет сброшено к начальному состоянию.")
+            Text("All your data will be permanently deleted. The app will be reset to its initial state.")
         }
     }
     
     private var profileSection: some View {
         NeumorphicCard {
             VStack(alignment: .leading, spacing: 15) {
-                Text("Профиль")
+                Text("Profile")
                     .font(.system(size: 18, weight: .semibold))
                     .foregroundColor(.white)
                 
@@ -61,7 +61,7 @@ struct SettingsView: View {
                             .foregroundColor(.appAccent)
                         
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("Пользователь")
+                            Text("User")
                                 .font(.system(size: 16, weight: .medium))
                                 .foregroundColor(.white)
                             
@@ -100,21 +100,21 @@ struct SettingsView: View {
     private var statisticsSection: some View {
         NeumorphicCard {
             VStack(alignment: .leading, spacing: 15) {
-                Text("Статистика")
+                Text("Statistics")
                     .font(.system(size: 18, weight: .semibold))
                     .foregroundColor(.white)
                 
                 VStack(spacing: 12) {
-                    StatRow(icon: "folder.fill", title: "Проектов", value: "\(viewModel.totalProjects)")
+                    StatRow(icon: "folder.fill", title: "Projects", value: "\(viewModel.totalProjects)")
                     Divider().background(Color.white.opacity(0.2))
-                    StatRow(icon: "list.bullet", title: "Всего задач", value: "\(viewModel.totalTasks)")
+                    StatRow(icon: "list.bullet", title: "Total Tasks", value: "\(viewModel.totalTasks)")
                     Divider().background(Color.white.opacity(0.2))
-                    StatRow(icon: "checkmark.circle.fill", title: "Завершено", value: "\(viewModel.completedTasks)")
+                    StatRow(icon: "checkmark.circle.fill", title: "Completed", value: "\(viewModel.completedTasks)")
                     
                     if viewModel.totalTasks > 0 {
                         Divider().background(Color.white.opacity(0.2))
                         let completionRate = Int((Double(viewModel.completedTasks) / Double(viewModel.totalTasks)) * 100)
-                        StatRow(icon: "chart.bar.fill", title: "Эффективность", value: "\(completionRate)%")
+                        StatRow(icon: "chart.bar.fill", title: "Efficiency", value: "\(completionRate)%")
                     }
                 }
             }
@@ -124,12 +124,12 @@ struct SettingsView: View {
     private var preferencesSection: some View {
         NeumorphicCard {
             VStack(alignment: .leading, spacing: 15) {
-                Text("Предпочтения")
+                Text("Preferences")
                     .font(.system(size: 18, weight: .semibold))
                     .foregroundColor(.white)
                 
                 VStack(spacing: 15) {
-                    Toggle("Показывать завершённые задачи", isOn: $viewModel.showCompletedTasks)
+                    Toggle("Show completed tasks", isOn: $viewModel.showCompletedTasks)
                         .toggleStyle(SwitchToggleStyle(tint: .appAccent))
                         .foregroundColor(.white)
                         .onChange(of: viewModel.showCompletedTasks) { _ in
@@ -140,7 +140,7 @@ struct SettingsView: View {
                         .background(Color.white.opacity(0.2))
                     
                     HStack {
-                        Text("Приоритет по умолчанию")
+                        Text("Default priority")
                             .foregroundColor(.white)
                         
                         Spacer()
@@ -170,18 +170,18 @@ struct SettingsView: View {
     private var notificationsSection: some View {
         NeumorphicCard {
             VStack(alignment: .leading, spacing: 15) {
-                Text("Уведомления")
+                Text("Notifications")
                     .font(.system(size: 18, weight: .semibold))
                     .foregroundColor(.white)
                 
-                Toggle("Включить уведомления", isOn: $viewModel.notificationsEnabled)
+                Toggle("Enable notifications", isOn: $viewModel.notificationsEnabled)
                     .toggleStyle(SwitchToggleStyle(tint: .appAccent))
                     .foregroundColor(.white)
                     .onChange(of: viewModel.notificationsEnabled) { _ in
                         viewModel.saveSettings()
                     }
                 
-                Text("Получайте напоминания о задачах и дедлайнах")
+                Text("Get reminders about tasks and deadlines")
                     .font(.system(size: 12))
                     .foregroundColor(.white.opacity(0.5))
             }
@@ -191,7 +191,7 @@ struct SettingsView: View {
     private var dangerZoneSection: some View {
         NeumorphicCard {
             VStack(alignment: .leading, spacing: 15) {
-                Text("Опасная зона")
+                Text("Danger Zone")
                     .font(.system(size: 18, weight: .semibold))
                     .foregroundColor(.red)
                 
@@ -200,7 +200,7 @@ struct SettingsView: View {
                 }) {
                     HStack {
                         Image(systemName: "trash.fill")
-                        Text("Удалить аккаунт")
+                        Text("Delete Account")
                     }
                     .font(.system(size: 16, weight: .semibold))
                     .foregroundColor(.white)
@@ -209,7 +209,7 @@ struct SettingsView: View {
                 }
                 .buttonStyle(NeumorphicButtonStyle(color: .red.opacity(0.7)))
                 
-                Text("Это действие удалит все ваши данные и вернёт приложение к начальному состоянию.")
+                Text("This action will delete all your data and reset the app to its initial state.")
                     .font(.system(size: 12))
                     .foregroundColor(.white.opacity(0.5))
                     .multilineTextAlignment(.center)
@@ -228,11 +228,11 @@ struct SettingsView: View {
                 .font(.system(size: 20, weight: .bold))
                 .foregroundColor(.white)
             
-            Text("Версия 1.0.0")
+            Text("Version 1.0.0")
                 .font(.system(size: 13))
                 .foregroundColor(.white.opacity(0.5))
             
-            Text("© 2024 TaskMingle. Все права защищены.")
+            Text("© 2024 TaskMingle. All rights reserved.")
                 .font(.system(size: 11))
                 .foregroundColor(.white.opacity(0.4))
                 .padding(.top, 5)

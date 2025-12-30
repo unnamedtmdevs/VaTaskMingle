@@ -47,7 +47,7 @@ struct TaskDetailView: View {
                         // Status and priority
                         HStack(spacing: 15) {
                             VStack(alignment: .leading, spacing: 8) {
-                                Text("Статус")
+                                Text("Status")
                                     .font(.system(size: 12))
                                     .foregroundColor(.white.opacity(0.6))
                                 
@@ -72,7 +72,7 @@ struct TaskDetailView: View {
                             }
                             
                             VStack(alignment: .leading, spacing: 8) {
-                                Text("Приоритет")
+                                Text("Priority")
                                     .font(.system(size: 12))
                                     .foregroundColor(.white.opacity(0.6))
                                 
@@ -106,7 +106,7 @@ struct TaskDetailView: View {
                                 HStack {
                                     Image(systemName: "calendar.badge.plus")
                                         .foregroundColor(.appAccent)
-                                    Text("Создано:")
+                                    Text("Created:")
                                         .foregroundColor(.white.opacity(0.7))
                                     Spacer()
                                     Text(viewModel.formatDate(viewModel.task.createdDate))
@@ -120,7 +120,7 @@ struct TaskDetailView: View {
                                     HStack {
                                         Image(systemName: "calendar.badge.clock")
                                             .foregroundColor(.appAccent)
-                                        Text("Срок:")
+                                        Text("Due:")
                                             .foregroundColor(.white.opacity(0.7))
                                         Spacer()
                                         Text(viewModel.formatDate(dueDate))
@@ -135,7 +135,7 @@ struct TaskDetailView: View {
                                     HStack {
                                         Image(systemName: "checkmark.circle.fill")
                                             .foregroundColor(.green)
-                                        Text("Завершено:")
+                                        Text("Completed:")
                                             .foregroundColor(.white.opacity(0.7))
                                         Spacer()
                                         Text(viewModel.formatDate(completedDate))
@@ -151,7 +151,7 @@ struct TaskDetailView: View {
                                 HStack {
                                     Image(systemName: "bell.fill")
                                         .foregroundColor(.appAccent)
-                                    Text("Напоминание")
+                                    Text("Reminder")
                                         .foregroundColor(.white)
                                     Spacer()
                                     
@@ -173,7 +173,7 @@ struct TaskDetailView: View {
                                         .labelsHidden()
                                         .accentColor(.appAccent)
                                     
-                                    Button("Установить") {
+                                    Button("Set") {
                                         viewModel.setReminder(date: reminderDate)
                                         showingReminderPicker = false
                                     }
@@ -188,7 +188,7 @@ struct TaskDetailView: View {
                                 HStack {
                                     Image(systemName: project.icon)
                                         .foregroundColor(Color(hex: project.color))
-                                    Text("Проект:")
+                                    Text("Project:")
                                         .foregroundColor(.white.opacity(0.7))
                                     Spacer()
                                     Text(project.name)
@@ -200,7 +200,7 @@ struct TaskDetailView: View {
                         
                         // Comments section
                         VStack(alignment: .leading, spacing: 12) {
-                            Text("Комментарии")
+                            Text("Comments")
                                 .font(.system(size: 18, weight: .semibold))
                                 .foregroundColor(.white)
                                 .padding(.horizontal)
@@ -239,7 +239,7 @@ struct TaskDetailView: View {
                                 Button(action: viewModel.addComment) {
                                     HStack {
                                         Image(systemName: "plus.bubble.fill")
-                                        Text("Добавить комментарий")
+                                        Text("Add Comment")
                                     }
                                     .font(.system(size: 16, weight: .semibold))
                                     .foregroundColor(.white)
@@ -257,7 +257,7 @@ struct TaskDetailView: View {
                         Button(action: { showingDeleteAlert = true }) {
                             HStack {
                                 Image(systemName: "trash.fill")
-                                Text("Удалить задачу")
+                                Text("Delete Task")
                             }
                             .font(.system(size: 16, weight: .semibold))
                             .foregroundColor(.white)
@@ -270,11 +270,11 @@ struct TaskDetailView: View {
                     .padding(.vertical)
                 }
             }
-            .navigationTitle("Детали задачи")
+            .navigationTitle("Task Details")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Закрыть") {
+                    Button("Close") {
                         if isEditing {
                             viewModel.updateTask()
                         }
@@ -284,7 +284,7 @@ struct TaskDetailView: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(isEditing ? "Готово" : "Изменить") {
+                    Button(isEditing ? "Done" : "Edit") {
                         if isEditing {
                             viewModel.updateTask()
                         }
@@ -293,14 +293,14 @@ struct TaskDetailView: View {
                     .foregroundColor(.appAccent)
                 }
             }
-            .alert("Удалить задачу?", isPresented: $showingDeleteAlert) {
-                Button("Отмена", role: .cancel) { }
-                Button("Удалить", role: .destructive) {
+            .alert("Delete Task?", isPresented: $showingDeleteAlert) {
+                Button("Cancel", role: .cancel) { }
+                Button("Delete", role: .destructive) {
                     viewModel.deleteTask()
                     dismiss()
                 }
             } message: {
-                Text("Это действие нельзя отменить.")
+                Text("This action cannot be undone.")
             }
         }
     }

@@ -14,10 +14,10 @@ class TaskListViewModel: ObservableObject {
     private let userService = UserService.shared
     
     enum SortOption: String, CaseIterable {
-        case dueDate = "Срок"
-        case priority = "Приоритет"
-        case status = "Статус"
-        case title = "Название"
+        case dueDate = "Due Date"
+        case priority = "Priority"
+        case status = "Status"
+        case title = "Title"
     }
     
     init() {

@@ -21,16 +21,16 @@ struct AddProjectView: View {
                     VStack(spacing: 25) {
                         // Project name
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Название проекта")
+                            Text("Project Name")
                                 .font(.system(size: 14, weight: .medium))
                                 .foregroundColor(.white.opacity(0.7))
                             
-                            NeumorphicTextField(placeholder: "Введите название...", text: $projectName)
+                            NeumorphicTextField(placeholder: "Enter name...", text: $projectName)
                         }
                         
                         // Description
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Описание")
+                            Text("Description")
                                 .font(.system(size: 14, weight: .medium))
                                 .foregroundColor(.white.opacity(0.7))
                             
@@ -52,7 +52,7 @@ struct AddProjectView: View {
                         
                         // Icon selector
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("Иконка")
+                            Text("Icon")
                                 .font(.system(size: 14, weight: .medium))
                                 .foregroundColor(.white.opacity(0.7))
                             
@@ -74,7 +74,7 @@ struct AddProjectView: View {
                         
                         // Color selector
                         VStack(alignment: .leading, spacing: 10) {
-                            Text("Цвет")
+                            Text("Color")
                                 .font(.system(size: 14, weight: .medium))
                                 .foregroundColor(.white.opacity(0.7))
                             
@@ -95,7 +95,7 @@ struct AddProjectView: View {
                         
                         // Create button
                         Button(action: createProject) {
-                            Text("Создать проект")
+                            Text("Create Project")
                                 .font(.system(size: 18, weight: .semibold))
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity)
@@ -108,11 +108,11 @@ struct AddProjectView: View {
                     .padding()
                 }
             }
-            .navigationTitle("Новый проект")
+            .navigationTitle("New Project")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Отмена") {
+                    Button("Cancel") {
                         dismiss()
                     }
                     .foregroundColor(.appAccent)

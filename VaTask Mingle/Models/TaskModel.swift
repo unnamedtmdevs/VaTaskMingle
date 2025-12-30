@@ -16,10 +16,10 @@ struct Task: Identifiable, Codable {
     var reminderDate: Date?
     
     enum Priority: String, Codable, CaseIterable {
-        case low = "Низкий"
-        case medium = "Средний"
-        case high = "Высокий"
-        case urgent = "Срочный"
+        case low = "Low"
+        case medium = "Medium"
+        case high = "High"
+        case urgent = "Urgent"
         
         var color: String {
             switch self {
@@ -32,10 +32,10 @@ struct Task: Identifiable, Codable {
     }
     
     enum TaskStatus: String, Codable, CaseIterable {
-        case todo = "К выполнению"
-        case inProgress = "В работе"
-        case review = "На проверке"
-        case completed = "Завершено"
+        case todo = "To Do"
+        case inProgress = "In Progress"
+        case review = "Review"
+        case completed = "Completed"
     }
     
     init(title: String, description: String = "", projectId: UUID? = nil, priority: Priority = .medium, status: TaskStatus = .todo, dueDate: Date? = nil) {

@@ -19,16 +19,16 @@ struct AddTaskView: View {
                     VStack(spacing: 20) {
                         // Title
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Название задачи")
+                            Text("Task Title")
                                 .font(.system(size: 14, weight: .medium))
                                 .foregroundColor(.white.opacity(0.7))
                             
-                            NeumorphicTextField(placeholder: "Введите название...", text: $title)
+                            NeumorphicTextField(placeholder: "Enter title...", text: $title)
                         }
                         
                         // Description
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Описание")
+                            Text("Description")
                                 .font(.system(size: 14, weight: .medium))
                                 .foregroundColor(.white.opacity(0.7))
                             
@@ -50,7 +50,7 @@ struct AddTaskView: View {
                         
                         // Priority
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Приоритет")
+                            Text("Priority")
                                 .font(.system(size: 14, weight: .medium))
                                 .foregroundColor(.white.opacity(0.7))
                             
@@ -72,7 +72,7 @@ struct AddTaskView: View {
                         }
                         
                         // Due date toggle
-                        Toggle("Установить срок", isOn: $hasDueDate)
+                        Toggle("Set Due Date", isOn: $hasDueDate)
                             .toggleStyle(SwitchToggleStyle(tint: .appAccent))
                             .foregroundColor(.white)
                             .padding()
@@ -83,7 +83,7 @@ struct AddTaskView: View {
                         
                         // Date picker
                         if hasDueDate {
-                            DatePicker("Срок выполнения",
+                            DatePicker("Due Date",
                                        selection: $selectedDate,
                                        in: Date()...,
                                        displayedComponents: [.date, .hourAndMinute])
@@ -99,7 +99,7 @@ struct AddTaskView: View {
                         
                         // Create button
                         Button(action: createTask) {
-                            Text("Создать задачу")
+                            Text("Create Task")
                                 .font(.system(size: 18, weight: .semibold))
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity)
@@ -112,11 +112,11 @@ struct AddTaskView: View {
                     .padding()
                 }
             }
-            .navigationTitle("Новая задача")
+            .navigationTitle("New Task")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Отмена") {
+                    Button("Cancel") {
                         dismiss()
                     }
                     .foregroundColor(.appAccent)

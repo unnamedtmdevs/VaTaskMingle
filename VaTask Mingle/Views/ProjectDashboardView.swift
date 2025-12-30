@@ -32,7 +32,7 @@ struct ProjectDashboardView: View {
                     .padding()
                 }
             }
-            .navigationTitle("Дашборд")
+            .navigationTitle("Dashboard")
             .navigationBarTitleDisplayMode(.large)
         }
         .accentColor(.appAccent)
@@ -45,11 +45,11 @@ struct ProjectDashboardView: View {
                 .foregroundColor(.white.opacity(0.3))
                 .padding(.top, 100)
             
-            Text("Нет проектов")
+            Text("No Projects")
                 .font(.system(size: 24, weight: .semibold))
                 .foregroundColor(.white.opacity(0.7))
             
-            Text("Создайте проект на экране задач")
+            Text("Create a project in the tasks screen")
                 .font(.system(size: 16))
                 .foregroundColor(.white.opacity(0.5))
         }
@@ -57,7 +57,7 @@ struct ProjectDashboardView: View {
     
     private var projectsSection: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text("Проекты")
+            Text("Projects")
                 .font(.system(size: 22, weight: .bold))
                 .foregroundColor(.white)
                 .padding(.horizontal, 5)
@@ -70,35 +70,35 @@ struct ProjectDashboardView: View {
     
     private var statisticsSection: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text("Статистика")
+            Text("Statistics")
                 .font(.system(size: 22, weight: .bold))
                 .foregroundColor(.white)
                 .padding(.horizontal, 5)
             
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 15) {
                 StatCardView(
-                    title: "Всего задач",
+                    title: "Total Tasks",
                     value: "\(taskService.tasks.count)",
                     icon: "list.bullet",
                     color: .blue
                 )
                 
                 StatCardView(
-                    title: "Завершено",
+                    title: "Completed",
                     value: "\(taskService.tasks.filter { $0.status == .completed }.count)",
                     icon: "checkmark.circle.fill",
                     color: .green
                 )
                 
                 StatCardView(
-                    title: "В работе",
+                    title: "In Progress",
                     value: "\(taskService.tasks.filter { $0.status == .inProgress }.count)",
                     icon: "hourglass",
                     color: .orange
                 )
                 
                 StatCardView(
-                    title: "Просрочено",
+                    title: "Overdue",
                     value: "\(taskService.overdueTasks().count)",
                     icon: "exclamationmark.triangle.fill",
                     color: .red
@@ -109,7 +109,7 @@ struct ProjectDashboardView: View {
     
     private var upcomingTasksSection: some View {
         VStack(alignment: .leading, spacing: 15) {
-            Text("Ближайшие задачи")
+            Text("Upcoming Tasks")
                 .font(.system(size: 22, weight: .bold))
                 .foregroundColor(.white)
                 .padding(.horizontal, 5)
@@ -122,7 +122,7 @@ struct ProjectDashboardView: View {
                         Image(systemName: "checkmark.circle")
                             .font(.system(size: 40))
                             .foregroundColor(.green)
-                        Text("Нет предстоящих задач")
+                        Text("No upcoming tasks")
                             .foregroundColor(.white.opacity(0.7))
                             .padding(.top, 5)
                     }
@@ -179,7 +179,7 @@ struct ProjectCardView: View {
                 // Progress bar
                 VStack(alignment: .leading, spacing: 8) {
                     HStack {
-                        Text("Прогресс")
+                        Text("Progress")
                             .font(.system(size: 12))
                             .foregroundColor(.white.opacity(0.6))
                         Spacer()
@@ -269,7 +269,7 @@ struct UpcomingTaskRow: View {
                     
                     HStack {
                         Image(systemName: "calendar")
-                        Text(daysUntilDue == 0 ? "Сегодня" : daysUntilDue == 1 ? "Завтра" : "Через \(daysUntilDue) дн.")
+                        Text(daysUntilDue == 0 ? "Today" : daysUntilDue == 1 ? "Tomorrow" : "In \(daysUntilDue) days")
                             .font(.system(size: 12))
                     }
                     .foregroundColor(.white.opacity(0.6))
